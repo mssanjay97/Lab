@@ -1,0 +1,53 @@
+#include<stdio.h>
+int size=5;
+struct stack
+{
+int n[100];
+int top;
+}a;
+
+void push(int num)
+{
+if (a.top==4)
+printf("full");
+else
+{a.n[++a.top]=num;
+}
+}
+void pop()
+{
+if (a.top==-1)
+printf("empty");
+else
+a.top--;
+}
+void disp()
+{
+if (a.top==-1)
+printf("empty");
+else
+{
+int i;
+for(i=a.top;i>=0;i--)
+printf("\n%d",a.n[i]);
+}
+}
+int main()
+{
+a.top=-1;
+int num;
+int basee;
+printf("enter number:");
+scanf("%d",&num);
+
+basee=2;
+while(num>0)
+{int p=num%basee;
+
+push(p);
+num=num/basee;
+}
+disp();
+return 1;
+}
+

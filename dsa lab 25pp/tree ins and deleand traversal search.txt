@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node {
+    int data;
+    struct node *left,*right;
+}*root,*ptr;
+struct node* ins(struct node *root,int key)
+{if (root==NULL)
+{
+    ptr=(struct node*)malloc(sizeof(struct node));
+    ptr->data=key;
+    ptr->left=ptr->right=NULL;
+    return ptr;
+}
+    if (root->data>key)
+    root->left=ins(root->left,key);
+    else if (root->data<key)
+    root->right=ins(root->right,key);
+    
+    return root;
+}
+struct node *dele(struct node *root,int key)
+{
+    if (root->data>key)
+    root->left=dele(root->left,key);
+    else if (root->data<key)
+    root->right=dele(root->right,key);
+    else
+    {   
+        if (root->right==NULL)
+        {
+            ptr=root->left;
+            
+            free(root);
+            return ptr;
+        }
+        else if (root->left==NULL)
+        {
+            ptr=root->right;
+            
+            free(root);
+            return ptr;
+        }
+        else
+        {
+            struct node *succ=root->right;
+            while(succ->left!=NULL)
+            succ=succ->left;
+            root->data=succ->data;
+            root->right=dele(root->right,succ->data);
+            return root;
+        }
+    }
+    return root;
+}
+void inorder(struct node *root)
+{
+    if (root!=NULL)
+    {
+        inorder(root->left);
+        printf("%d \t",root->data);
+        inorder(root->right);
+    }
+}
+void search(struct node *root,int key)
+{if (root==NULL)
+printf("not found");
+    else if (root->data==key)
+    printf("Found");
+    else if (root->data<key)
+    search(root->right,key);
+    else if(root->data>key)
+    search(root->left,key);
+}
+int main()
+{
+    root=ins(root,3);
+    root=ins(root,4);
+    root=ins(root,5);
+    root=ins(root,6);
+    search(root,5);
+    inorder(root);
+    root=dele(root,5);
+    printf("\n");
+    inorder(root);
+    search(root,5);
+    return 0;
+}

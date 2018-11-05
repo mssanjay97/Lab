@@ -1,0 +1,78 @@
+#include<iostream>
+#include<stdlib.h>
+
+using namespace std;
+
+struct stacl
+{
+    int n[100],top;
+
+
+}a;
+
+void push(int num)
+
+{   a.top++;
+
+
+    a.n[a.top]=num;
+ 
+   
+    
+    
+}
+
+void pop()
+
+{
+    a.top--;
+
+}
+
+void disp()
+
+{
+
+ for(int i=a.top;i>=0;i--)
+    
+cout<<a.n[i]; 
+  
+}
+
+int main()
+
+{   
+int p;
+  
+  a.top=-1;
+    
+ 
+   int num,base;
+    
+cin>>num;
+   
+ cin>>base;
+    
+if (base==0)
+    
+{cout<<"wrong";
+  
+  return 0;}
+  
+  
+    while(num!=0)
+   
+ {p=num%base;
+  
+  push(p);
+   
+ num=num/base;
+    
+}
+
+   disp(); 
+
+   return 0;
+
+}
+

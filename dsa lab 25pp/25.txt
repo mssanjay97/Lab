@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct book
+{char tit[100];
+int edn;
+};
+struct node
+{
+struct book b;
+ struct node *next;
+}*front,*rear,*ptr;
+
+void push()
+{
+ptr=(struct node*)malloc(sizeof(struct node));
+scanf("%s",&ptr->b.tit);
+scanf("%d",&ptr->b.edn);
+ptr->next=NULL;
+if (front==NULL)
+front=rear=ptr;
+else
+{
+    rear->next=ptr;
+    rear=rear->next;
+}
+}
+void pop()
+{
+    if(front==NULL)
+    printf("empty");
+    else if (front==rear)
+    front=rear=NULL;
+    else
+    {ptr=front;
+    front=front->next;
+    free(ptr);
+    }
+}
+void disp()
+{
+    if (front==NULL)
+    printf("empty");
+    else
+    {
+        ptr=front;
+        while(ptr!=NULL)
+        {
+        printf("%d\t%s\n",ptr->b.edn,ptr->b.tit);
+        ptr=ptr->next;
+        }
+    }
+}
+    
+int main() {
+push();
+pop();
+pop();
+
+push();
+disp();
+push();
+push();
+pop();
+disp();
+pop();
+disp();
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+

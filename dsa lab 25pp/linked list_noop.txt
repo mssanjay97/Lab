@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+int max 100
+struct node{
+int data;
+node *next;
+}top;
+
+
+void add(int val)
+{ptr=new node;
+ptr->data=val;
+ptr->next=NULL;
+
+if (top==NULL)
+top=ptr;
+else
+{
+ptr->next=top;
+top=ptr;
+}
+}
+void pop()
+{
+ptr=top;
+if (top==NULL)
+cout<<"Stack underflow";
+else
+{
+top->next=top;
+free(ptr);
+}
+}
+void disp()
+{
+ptr=top;
+if (ptr==NULL)
+cout<<"Stack underflow";
+else
+{
+while(ptr!=NULL)
+{
+cout<<ptr->data;
+ptr=ptr->next;
+}
+}
+}
+void main()
+{
+int ch;
+cin>>ch;
+push();
+disp();
+pop();
+disp();
+}

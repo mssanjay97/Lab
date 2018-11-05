@@ -1,0 +1,170 @@
+
+
+
+#include <iostream>
+
+#include <string.h>
+
+#include <cctype>
+
+using namespace std;
+
+#define max 100
+
+struct stack{
+   
+ char exp[max];
+   
+ int top;
+
+};
+stack a,op;
+
+
+void pushs(char s)
+{
+ 
+   if (a.top==max-1)
+ 
+   cout<<"Stack overflow";
+  
+  else
+  
+  {a.top++;
+   
+ a.exp[a.top]=s;
+  
+  }
+}
+
+void pushop(char s)
+{
+   
+ if (op.top==max-1)
+   
+ cout<<"Stack overflow";
+
+    else
+  
+  {op.top++;
+   
+ op.exp[op.top]=s;
+ 
+   }
+  
+  
+}
+
+void pops()
+{
+   
+ if (a.top==-1)
+ 
+   cout<<"Stack underflow";
+ 
+   else
+  
+  a.top--;
+
+}
+
+void popop()
+{
+  
+  if (op.top==-1)
+  
+  cout<<"Stack underflow";
+ 
+   else
+   
+ op.top--;
+
+}
+
+struct prec{
+  
+  char c;
+  
+  int v;
+
+}p[]={{'+',3},{'-',3},{'*',2},{'/',2},{'^',1},{'%',2}};
+
+int search(char ch)
+{
+  
+  for(int i=0;i<6;i++)
+ 
+   if (p[i].c==ch)
+  
+  return p[i].v;
+
+}
+
+int prec(char a,char b)
+{
+  
+  if(search(a)<search(b))
+  
+  return 1;
+  
+  else
+   
+ return 0;
+}
+
+
+void eval(char xprsn[])
+{
+  
+  for(int i=0;i<strlen(xprsn);i++)
+ 
+   {
+        if (xprsn[i]=='(')
+        pushs(xprsn[i]);
+        else if (isalpha(xprsn[i]))
+        pushop(xprsn[i]);
+        else if (xprsn[i]==')')
+        {while(a.exp[a.top]!='(')
+        {pushop(a.exp[a.top]);
+        pops();}
+            pops();
+        }
+        else
+        {
+            if (a.exp[a.top]=='(')
+            pushs(xprsn[i]);
+            else
+            {
+            while(a.exp[a.top]!='(')
+            {
+            if (prec(a.exp[a.top],xprsn[i])==1)
+            {pushs(xprsn[i]);
+            break;
+            }
+            else
+            {pushop(a.exp[a.top]);
+            pops();}
+            }
+        }
+    }
+ }
+}
+
+void dispop()
+{
+for(int i=0;i<=op.top;i++)
+cout<<op.exp[i]<<" ";
+
+}
+int main()
+{
+a.top=-1;
+op.top=-1;
+char expr[100];
+cin>>expr;
+eval(expr);
+
+dispop();  
+return 1;
+}
+       

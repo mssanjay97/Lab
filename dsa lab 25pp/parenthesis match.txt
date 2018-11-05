@@ -1,0 +1,75 @@
+#include<iostream>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+#define max 10
+struct stack
+{char arr[max];
+}a;
+int top=-1;
+void push(char ch)
+{
+if (top==max-1)
+cout<<"FULL";
+else
+{top++;
+a.arr[top]=ch;
+}
+}
+void pop()
+{
+if (top==-1)
+cout<<"empty";
+else
+top--;
+}
+
+int main()
+{
+char expr[100];
+cin>>expr;
+int i=0;
+if (expr[0]==']'||expr[0]=='}'||expr[0]==')'||expr[strlen(expr)-1]=='['||expr[strlen(expr)-1]=='{'||expr[strlen(expr)-1]=='(')
+
+{
+    cout<<"WRONG";
+ 
+   exit(0);
+
+}
+while(i<strlen(expr))
+{
+if (expr[i]=='[' ||expr[i]=='{'||expr[i]=='(')
+
+{push(expr[i]);
+}
+else if (expr[i]==']')
+{if (a.arr[top]=='[')
+pop();
+else 
+{cout<<"WRONG";
+exit(0);
+}
+}
+else if (expr[i]=='}')
+{if (a.arr[top]=='{')
+pop();
+else 
+{cout<<"WRONG";
+exit(0);}
+}
+else if (expr[i]==')')
+{if (a.arr[top]=='(')
+pop();
+else 
+{cout<<"WRONG";
+exit(0);}
+}
+i++;
+}
+if (top!=-1)
+cout<<"WRONG";
+else 
+cout<<"MATCH";
+return 0;
+}

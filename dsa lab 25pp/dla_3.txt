@@ -1,0 +1,95 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<string.h>
+ #define size 5/*mam i dont kno why many are defining size of array using #define...im also doing so*/
+struct stack {
+   char name[100],reg[100],addr[100];
+   long ph;
+   int top;
+} st[max];
+ 
+int stfull() {
+   if (st.top >= size - 1)
+      return 1;
+   else
+      return 0;
+}
+ 
+void push(stack s) {
+   st.top=st.top+1;
+   st[top]=s;
+}
+ 
+int stempty() {
+   if (st.top == -1)
+      return 1;
+   else
+      return 0;
+}
+ 
+int pop() {
+   int item;
+   
+   st.top=st.top-1;
+   
+}
+ 
+void display() {
+   int i;
+   if (stempty())
+      cout<<"\nStack Is Empty!";
+   else {
+      for (i = st.top; i >= 0; i--)
+         {puts(st[i].name);
+          puts(st[i].reg);
+          puts(st[i].addr);
+          cout<<st[i].ph; }
+   }
+}
+ 
+int main() {
+   stack s;
+   char ans;
+   
+   st.top = -1;
+ 
+   cout<<"\n\tImplementation Of Stack";
+   do {
+      cout<<"\nMain Menu";
+      cout<<"\n1.Push \n2.Pop \n3.Display \n4.exit";
+      cout<<"\nEnter Your Choice";
+      cin>>choice;
+      switch (choice) {
+      case 1:
+
+         if (stfull())
+            cout<<"\nStack is Full!";
+         else
+         {cout<<"\nEnter The item to be pushed";
+         gets(s.names);
+         gets(s.regno);
+         gets(s.address);
+         cin>>s.phone;
+            push(s);}
+         break;
+      case 2:
+         if (stempty())
+            cout<<"\nEmpty stack!Underflow !!";
+         else {
+            
+            cout<<"\nSucessfully popped an element";
+         }
+         break;
+      case 3:
+         display();
+         break;
+      case 4:
+         exit(0);
+      }
+      cout<<"\nDo You want To Continue?";
+      cin>>ans;
+   } while (ans == 'Y' || ans == 'y');
+ 
+return 0;
+}

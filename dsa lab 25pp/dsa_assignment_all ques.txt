@@ -1,0 +1,244 @@
+#include<iostream>
+using namespace std;
+struct node{
+int data;
+node *next;
+}*top,*ntop,*temp,*ptr;
+
+void add_beg(int val)
+{ptr=new node;
+ptr->data=val;
+ptr->next=NULL;
+if (top==NULL)
+ptr=top;
+else
+{
+ptr->next=top;
+top=ptr;
+}
+}
+void add_end(int val)
+{ptr=new node;
+ptr->data=val;
+ptr->next=NULL;
+if (top==NULL)
+ptr=top;
+else
+{
+temp=top;
+while(temp->next!=NULL)
+temp=temp->next;
+temp->next=ptr;
+}
+}
+void add_pos(int val,int pos)
+{
+ptr=new node;
+ptr->data=val;
+ptr->next=NULL;
+int i=1;
+temp=top;
+while(i<pos-1)
+{
+temp=temp->next;
+i++;
+}
+ptr->next=temp->next;
+temp->next=ptr;
+}
+void del_beg()
+{
+if (top==NULL)
+cout<<"Empty";
+else if (top->next==NULL)
+top=NULL;
+else
+{
+temp=top;
+top=top->next;
+free(temp);
+}
+}
+void del_end()
+{if (top==NULL)
+cout<<"Empty";
+else if (top->next==NULL)
+top=NULL;
+else
+{temp=top;
+while((temp->next)->next!=NULL)
+temp=temp->next;
+ptr=temp->next;
+temp->next=NULL;
+free(ptr);
+}
+}
+void del_pos(int pos)
+{if (top==NULL)
+cout<<"Empty";
+else
+{
+ptr=top;
+int i=1;
+while(i<pos-1)
+{ptr=ptr->next;
+i++;
+}
+temp=ptr->next;
+ptr->next=(ptr->next)->next;
+free(temp);
+}
+}
+void createlist(int val)
+{
+if(top!=NULL)
+cout<<"List already created!!";
+else
+{top=new node;
+top->data=val;
+top->next=NULL;
+}
+}
+void display()
+{
+if (top==NULL)
+cout<<"Empty";
+else
+{
+ptr=top;
+while(ptr!=NULL)
+{cout<<ptr->data<<"\n";
+ptr=ptr->next;
+}
+}
+}
+void count_words()
+{if (top==NULL)
+cout<<"There are no nodes";
+else
+{
+ptr=top;
+int i=0;
+while(ptr!=NULL)
+{i++;
+ptr=ptr->next;
+}
+cout<<"Number of nodes="<<i;
+}
+}
+void reverse_disp()
+{if (top==NULL)
+cout<<"Empty";
+else
+{int val;
+ptr=top;
+while(ptr!=NULL)
+{val=ptr->data;
+temp=new node;
+temp->data=val;
+temp->next=NULL;
+if (ntop==NULL)
+ntop=temp;
+else
+{temp->next=ntop;
+ntop=temp;
+}
+ptr=ptr->next;
+}
+ptr=ntop;
+while(ptr!=NULL)
+{
+cout<<ptr->data<<"\n";
+ptr=ptr->next;
+}
+}
+}
+void reverse_ll()
+{
+if (top==NULL)
+cout<<"Empty";
+else
+{int val;
+ptr=top;
+while(ptr!=NULL)
+{
+val=ptr->data;
+temp=new node;
+temp->data=val;
+temp->next=NULL;
+if(ntop==NULL)
+ntop=temp;
+else
+{temp->next=ntop;
+ntop=temp;
+}
+ptr=ptr->next;
+}
+cout<<"Printing reversed linked list";
+ptr=ntop;
+while(ptr!=NULL)
+{cout<<ptr->data<<"\n";
+ptr=ptr->next;
+}
+}
+}
+void merge_ll()
+{
+if((top==NULL)||(ntop==NULL))
+cout<<"Empty\n";
+else
+{
+ptr=top;
+while(ptr->next!=NULL)
+ptr=ptr->next;
+ptr->next=ntop;
+cout<<"Print new linked list\n";
+ptr=top;
+while(ptr!=NULL)
+{
+cout<<ptr->data<<"\n";
+ptr=ptr->next;
+}
+}
+}
+void sq()
+{
+if(top==NULL)
+cout<<"Empty";
+else
+{int val;
+ptr=top;
+while(ptr!=NULL)
+{val=(ptr->data)*(ptr->data);
+temp=new node;
+temp->data=val;
+temp->next=NULL;
+if(ntop==NULL)
+ntop=temp;
+else
+{temp->next=ntop;
+ntop=temp;
+}
+ptr=ptr->next;
+}
+
+ptr=ntop;
+while(ptr!=NULL)
+{cout<<ptr->data<<"\n";
+ptr=ptr->next;
+}
+}
+}
+int main()
+{
+createlist(2);
+add_end(4);
+add_end(3);
+add_beg(1);
+add_pos(7,3);
+del_beg();
+
+display();
+
+return 0;
+}

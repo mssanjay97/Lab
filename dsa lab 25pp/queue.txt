@@ -1,0 +1,83 @@
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+#define max 10
+struct queue
+{int arr[max];
+int front,rear;
+}a;
+void enqueue()
+{
+    int add_item;
+    if (a.rear == max - 1)
+    cout<<"\nQueue Overflow \n";
+    else
+    {
+        if (a.front == - 1)      
+        a.front = 0;
+        cout<<"\nInsert the element in queue : ";
+        cin>>add_item;
+        a.rear = a.rear + 1;
+        a.arr[a.rear] = add_item;
+    }
+}
+void dequeue()
+{
+    if (a.front == - 1 )
+    {
+        cout<<"Queue Underflow \n";
+        
+    }
+    else
+    {   
+        cout<<"Element deleted from queue is : "<<a.arr[a.front]<<"\n";
+	if (a.front==a.rear)
+	    a.front=a.rear=-1;
+        else
+            a.front = a.front + 1;
+    }
+}
+void display()
+{
+    if (a.front == - 1 )
+    {
+        cout<<"Queue Underflow \n";
+        
+    }
+    else
+    {int i;
+     for (i=a.front;i<=a.rear;i++)
+	cout<<a.arr[i]<<"\t";
+     }
+}
+int main()
+{  int choice;
+   char ans;
+   a.rear=a.front=-1;
+ 
+   cout<<"\n\tImplementation Of Queue\n";
+   do {
+      cout<<"\nMain Menu";
+      cout<<"\n1.ENQUEUE \n2.DEQUEUE \n3.DISPLAY \n4.EXIT";
+      cout<<"\nEnter Your Choice\n";
+      cin>>choice;
+      switch (choice) {
+      case 1:
+         {enqueue();
+         break;}
+      case 2:
+         {dequeue();
+         break;}
+      case 3:
+         {display();
+         break;}
+      case 4:
+         exit(0);
+      }
+      cout<<"\nDo You want To Continue?";
+      cin>>ans;
+   } while (ans == 'Y' || ans == 'y');
+ 
+return 0;
+}

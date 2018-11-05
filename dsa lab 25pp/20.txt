@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<string.h>
+struct book{
+    char tit[100];
+    int edn;
+    
+}a[4];
+int main(void) {
+	int i,j;
+	struct book title;
+	for(i=0;i<4;i++)
+	{
+	  scanf("%s",&a[i].tit); 
+	  scanf("%d",&a[i].edn);
+	}
+	for(i=0;i<4;i++)
+	puts(a[i].tit);
+	for(i=0;i<4;i++)
+	{
+	    for(j=i+1;j<4;j++)
+	    {
+	        if (strcmp(a[i].tit,a[j].tit)>0)
+	        {title=a[i];
+	        a[i]=a[j];
+	        a[j]=title;
+	            
+	        }
+	    }
+	}
+	for(i=0;i<4;i++)
+	puts(a[i].tit);
+	return 0;
+}
+

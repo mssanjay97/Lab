@@ -1,0 +1,134 @@
+#include <iostream>
+
+#include<string.h>
+
+#include<cctype>
+
+#include<stdio.h>
+
+using namespace std;
+
+struct stack
+
+{
+    int exp[100];
+
+    int top;
+
+}a;
+
+void push(int c)
+{
+   
+ a.top++;
+ 
+   a.exp[a.top]=c;
+  
+  
+}
+
+void pop()
+{
+  
+  a.top--;
+
+}
+
+int inte(char ch)
+{
+return (ch-'0');
+
+}
+
+char intec(int a)
+{
+  
+  return char('0'+a);
+
+}
+
+int oper(int c,int b,char a)
+
+{
+    if (a=='+')
+   
+ return((b)+(c));
+   
+ else if (a=='-')
+  
+  return ((b)-(c));
+ 
+  
+ else if (a=='*')
+  
+  return  ((b)*(c));
+  
+  else if (a=='/')
+   
+ return  ((b)/(c));
+   
+ else if (a=='^')
+   
+ return  ((b)^(c));
+
+}
+
+void eval(char xpr[])
+{  
+ 
+    char a1,a2,a3;
+    
+for(int i=0;i<strlen(xpr);i++)
+ 
+   {
+    if (!isdigit(xpr[i]))
+  
+  {a1=(a.exp[a.top]);
+   
+ a2=(a.exp[a.top-1]);
+  
+  pop();
+   
+ pop();
+   
+ a3=(xpr[i]);
+ 
+   push(oper(a1,a2,a3));
+    
+
+    }
+   
+
+ else 
+     
+ push(inte(xpr[i]));
+ 
+   }
+
+}
+
+void disp()
+{
+ 
+   cout<<a.exp[0];
+
+}
+
+int main()
+{  
+ a.top=-1;
+	
+char xpr[100];
+	
+cout<<"enter postfix expression";
+	
+cin>>xpr;
+	
+eval(xpr);
+	
+disp();
+
+	return 0;
+
+}
+
