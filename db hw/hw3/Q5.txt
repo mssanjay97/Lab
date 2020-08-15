@@ -1,0 +1,72 @@
+DONE ON GOOGLE CLOUD PLATFORM GCP
+
+
+gcloud sql connect myinstance --user=postgres
+[ENTER PASSWORD]
+create extension PostGIS;
+
+QUESTION 1:CONVEX HULL 
+
+CREATE TABLE db(geom geometry);
+
+INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.286217 34.023974),(-118.282798 34.021904),(-118.284000 34.021459),(-118.283538 34.020303),(-118.286606 34.018910),(-118.287279 34.024430),(-118.285986 34.024034),(-118.285068 34.023812),(-118.284376 34.023634),(-118.282708 34.022794),(-118.286157 34.020935),(-118.286172 34.020115),(-118.285979 34.020008),(-118.288050 34.024757),(-118.282202 34.021849))'));
+
+
+postgres=> select ST_AsText(ST_ConvexHull(ST_Collect(geom))) from db;
+                                                                             st_astext
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ POLYGON((-118.286606 34.01891,-118.28805 34.024757,-118.284376 34.023634,-118.282708 34.022794,-118.282202 34.021849,-118.283538 34.020303,-118.286606 34.01891))
+(1 row)
+postgres=>
+
+
+
+
+QUESTION 2: K NEAREST NEIGHBOUR
+
+CREATE TABLE db(geom geometry);
+
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.286217  34.023974))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.282798 34.021904))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.284000 34.021459))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.283538 34.020303))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.286606 34.018910))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.287279 34.024430))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.285986 34.024034))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.285068 34.023812))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.284376 34.023634))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.282708 34.022794))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.286157 34.020935))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.286172 34.020115))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.285979 34.020008))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.288050 34.024757))'));
+INSERT 0 1
+postgres=> INSERT INTO db(geom) VALUES(ST_GeomFromText('MULTIPOINT((-118.282202 34.021849))'));
+INSERT 0 1
+
+
+
+
+postgres=> select ST_Distance(geom,'POINT(-118.282202 34.021849)') as dist ,ST_AsText(geom) as point from db order by dist limit 5;
+         dist         |               point
+----------------------+-----------------------------------
+                    0 | MULTIPOINT(-118.282202 34.021849)
+ 0.000598532371723934 | MULTIPOINT(-118.282798 34.021904)
+   0.0010719426290576 | MULTIPOINT(-118.282708 34.022794)
+  0.00183981085985244 | MULTIPOINT(-118.284 34.021459)
+  0.00204328461062108 | MULTIPOINT(-118.283538 34.020303)
+(5 rows)
+

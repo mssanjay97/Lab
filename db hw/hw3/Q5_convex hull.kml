@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+<Style id="z1">
+<IconStyle><Icon><href>http://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png</href></Icon></IconStyle>
+</Style>
+<Style id="transRedPoly">
+<LineStyle>
+<width>6</width>
+</LineStyle>
+<PolyStyle>
+<color>7d0000ff</color>
+</PolyStyle>
+</Style>
+<Folder>
+<name>Library</name>
+<description>Coordinates of five libraries inside USC</description>
+<Placemark><name>Wilson Library</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.286217,34.023974</coordinates></Point>
+</Placemark>
+<Placemark><name>Leavey Library</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.282798,34.021904</coordinates></Point>
+</Placemark>
+<Placemark><name>VKC Library</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.284000,34.021459</coordinates></Point>
+</Placemark>
+<Placemark><name>Cinema Arts Lib</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.283538,34.020303</coordinates></Point>
+</Placemark>
+<Placemark><name>Hoose Library</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.286606,34.018910</coordinates></Point>
+</Placemark>
+</Folder>
+<Folder>
+<name>Parking Lot</name>
+<description>Coordinates of five parking lots inside USC</description>
+<Placemark><name>Park Lot SSRI</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.287279,34.024430</coordinates></Point>
+</Placemark>
+<Placemark><name>Parking Lot V</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.285986,34.024034</coordinates></Point>
+</Placemark>
+<Placemark><name>Parking Lot M</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.285068,34.023812</coordinates></Point>
+</Placemark>
+<Placemark><name>Parking Lot 23</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.284376,34.023634</coordinates></Point>
+</Placemark>
+<Placemark><name>Parking Lot B</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.282708,34.022794</coordinates></Point>
+</Placemark>
+</Folder>
+<Folder>
+<name>Eateries</name>
+<description>Coordinates of five restaurants or pubs or cafeterias inside USC</description>
+<Placemark><name>Lemonade</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.286157,34.020935</coordinates></Point>
+</Placemark>
+<Placemark><name>Traditions</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.286172,34.020115</coordinates></Point>
+</Placemark>
+<Placemark><name>Moreton Fig</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.285979,34.020008</coordinates></Point>
+</Placemark>
+<Placemark><name>Starbucks</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.288050,34.024757</coordinates></Point>
+</Placemark>
+<Placemark><name>Starbucks</name>
+<styleUrl>#z1</styleUrl><Point><coordinates>-118.282202,34.021849</coordinates></Point>
+</Placemark>
+</Folder>
+
+
+<Folder>
+<name>Convex hull of 15 pts</name>
+<visibility>0</visibility>
+<description>Boundary of convex hull polygon inside USC</description>
+<Placemark>
+<name>CONVEX HULL USC</name>
+<visibility>0</visibility>
+<styleUrl>#transRedPoly</styleUrl>
+<Polygon>
+<extrude>1</extrude>
+<altitudeMode>relativeToGround</altitudeMode>
+<outerBoundaryIs>
+<LinearRing>
+<coordinates>-118.286606,34.01891,30
+-118.28805,34.024757,37
+-118.284376,34.023634,30
+-118.282708,34.022794,30
+-118.282202,34.021849,30
+-118.283538,34.020303,30
+-118.286606,34.01891,30
+</coordinates>
+</LinearRing>
+</outerBoundaryIs>
+</Polygon>
+</Placemark>
+</Folder>
+</Document>
+</kml>
